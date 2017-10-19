@@ -35,6 +35,7 @@ spec:
             }
           }
     spec:
+      serviceAccount: es-client
       containers:
       - name: es-client
         securityContext:
@@ -87,6 +88,10 @@ spec:
             configMapKeyRef:
               name: es-env
               key: es-client-endpoint
+        - name: KUBERNETES_MASTER
+          value: 'https://10.43.0.1'
+        - name: KUBERNETES_TRUST_CERTIFICATES
+          value: 'true'
         ports:
         - name: transport
           containerPort: 9300

@@ -12,6 +12,7 @@ spec:
     targetPort: ui
   selector:
     k8s-app: kibana-logging
+  type: LoadBalancer
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment

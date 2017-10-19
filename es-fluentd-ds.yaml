@@ -39,6 +39,7 @@ spec:
           mountPath: /etc/td-agent
           readOnly: true
       terminationGracePeriodSeconds: 30
+      serviceAccountName: fluentd
       volumes:
       - name: var-log
         hostPath:

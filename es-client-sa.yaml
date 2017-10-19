@@ -1,0 +1,37 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: es-client
+  namespace: monitoring
+
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: es-client
+  namespace: monitoring
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - endpoints
+  verbs:
+  - get
+  - list
+  - watch
+
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: es-client
+roleRef:
+  kind: ClusterRole
+  name: es-client
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+- kind: ServiceAccount
+  name: es-client
+  namespace: monitoring
